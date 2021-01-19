@@ -1,4 +1,8 @@
-# My own version of the reveal.js slides framework
+# Perl, the hidden automation gem
+
+On how Perl feeds the CI/automation revolution
+
+## My own version of the reveal.js slides framework
 
 This version that I personally use includes
 
