@@ -126,7 +126,11 @@ before_install:
   - curl https://raw.githubusercontent.com/SublimeText/Dictionaries/master/Spanish.dic -o Spanish.dic
   - echo "use Test::Text;just_check( 'documentos/temas','.', 'Spanish', 0 );just_check( 'documentos/proyecto','.', 'Spanish',1 );" > just_check.t
 install: cpanm  ExtUtils::PkgConfig Test::Text TAP::Harness
-script: perl -MTAP::Harness -e 'use utf8; my $harness = TAP::Harness->new( { verbosity => 0} ); die "FAIL" if  $harness->runtests( "just_check.t" )->failed;'
+script: perl -MTAP::Harness -e 'use utf8; my $harness = TAP::Harness->new( { verbosity => 0} ); die "FAIL" if  $harness->runtests( "just_check.t" )->failed;'</code></pre>
+                <aside class='notes'>Hey, you're cheating. You're
+                  using the perl runner, same as everyone
+                  else.</aside>
+              </section>
             </div>
 	  </div>
 
