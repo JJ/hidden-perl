@@ -30,11 +30,25 @@
                     Perl Archive Network</aside>
               </section>
 
-	      <section data-background='https://live.staticflickr.com/3507/3791689000_76e3a5ef16_k_d.jpg'
-                       ><h1>Programming Perl since 1993</h1>
+	      <section data-background='https://live.staticflickr.com/3507/3791689000_76e3a5ef16_k_d.jpg' ><h1>Programming Perl since 1993</h1>
                 <h2>Lately more Raku (previously known as Perl 6)</h2>
                 <aside class='notes'>Picture taken in 2009, Perl
                   conference in Lisbon</aside>
+              </section>
+
+              <section><h1>Hello from a GitHub action</h1>
+                  <pre><code data-line-numbers="1|1,2|3|3-5|6|7|8|9-10|7-11">name: Hello Perl
+on: [push, pull_request]
+jobs:
+  hello-perl:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Hello Perl
+        shell: perl {0}
+        env:
+          ACTION: ${{ github.action }}
+        run: print "Hey $ENV{'GITHUB_ACTOR'} from $ENV{'ACTION'}";
+                  </code></pre>
               </section>
 
               <section data-background='https://live.staticflickr.com/65535/50856984756_4cfa5e7883_k_d.jpg'>
