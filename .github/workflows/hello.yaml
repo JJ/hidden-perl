@@ -1,7 +1,5 @@
 name: Hello Perl
-on:
-  release:
-    types: [published]
+on: [push, pull_request]
 jobs:
   hello-perl:
     runs-on: ubuntu-latest
