@@ -1,0 +1,11 @@
+name: Hello Perl
+on: release
+jobs:
+  hello-perl:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Hello Perl
+        shell: perl {0}
+        env:
+          ACTION: ${{ github.action }}
+        run: print "Hey $ENV{'GITHUB_ACTOR'} from $ENV{'ACTION'}";
