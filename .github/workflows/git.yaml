@@ -10,4 +10,4 @@ jobs:
           fetch-depth: 2
       - name: Ref issue present in a commit
         shell: perl {0}
-        run: print "Hello"
+        run: use Git; exit(1) if Git->repository->command("log", "--oneline", "-1") !~ /\#/;
