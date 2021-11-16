@@ -1,4 +1,4 @@
-name: Hello Perl
+name: Check commit messages
 on: [push, pull_request]
 jobs:
   hello-perl:
@@ -12,6 +12,5 @@ jobs:
         shell: perl {0}
         run: |
           use Git;
-          if ( Git->repository->command("log", "--oneline", "-1") !~ /\#/ ) {
-              die "::error::Last commit should refer to an issue";
-          }
+          die "::error::Last commit should refer to an issue"
+              if ( Git->repository->command("log", "--oneline", "-1") !~ /\#/ );
