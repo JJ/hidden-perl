@@ -1,0 +1,13 @@
+name: Hello Perl
+on: [push, pull_request]
+jobs:
+  hello-perl:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 2
+      - name: Ref issue present in a commit
+        shell: perl {0}
+        run: print "Hello"
