@@ -63,8 +63,25 @@ jobs:
                   <h2 class="fragment">But still useful</h2>
               </section>
 
+              <section data-background=""><h1>With lots of goodies</h1>
+                  <pre><code data-background="3-5|8">    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 2
+      - name: Ref issue present in a commit
+        shell: perl {0}
+        run: use Git; exit(1) if Git->repository->command("log", "--oneline", "-1") !~ /\#/;
+                  </code></pre>
+                  <aside class="notes">First, we use an external action; this is
+                  one of the nice things with GHA, these pre-made steps you can
+                  re-use, even if they are so mundane as just checking out the
+                  source. This library is preinstalled when you
+                  install git, which of course is installed everywhere. Still, a
+                      nit: we simply exit without precisely telling what's the
+                      deal</aside>
+              </section>
               
-
               <section> <!-- Github actions -->
 
               <section><h2>Do you have that in GitHub actions?</h2>
