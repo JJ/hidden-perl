@@ -81,44 +81,24 @@ jobs:
                       nit: we simply exit without precisely telling what's the
                       deal</aside>
               </section>
-              
-              <section> <!-- Github actions -->
 
-              <section><h2>Do you have that in GitHub actions?</h2>
-                <pre><code data-line-numbers='8|11,12,14'>jobs:
-  run_tests:
-    runs-on: ubuntu-latest
-    steps:
-      - name: checkout
-        uses: actions/checkout@v2
-      - name: Install modules by apt
-        run: sudo apt-get install libxml-rss-perl libmp3-info-perl
-      - name: Prepare for tests
-        run: |
-          perl Makefile.PL
-          make
-      - name: Perform tests
-        run: make disttest
-                </code></pre>
-
-                <aside class='notes'>Pretty straightforward, huh? It's
-                  as simple as using shell, which is obviously also
-                  supplied (but which shell will depend on the runner)</aside>
+              <section><h1 class="fragment">It's not pretty</h1>
+                  <img src="img/exit-error.png" alt="error when failed">
+                  <h2 class="fragment">It does its job</h2>
               </section>
 
-              <section><h1>Use Perl as a shell</h1>
-                <pre><code data-line-numbers='2|4,5|5'>      - name: Test env variables
-        shell: perl {0}
-        run: |
-          use GitHub::Actions;
-          set_env( 'FOO', 'BAR'); # Set GH environment variable
-                </code></pre>
-                <aside class='notes'>In fact, GitHub::Actions is a
-                mini-library that simplifies using GitHub actions
-                command in Perl... You need either to install it in
-                  advance (fast, no dependencies) or fatpack
-                  it in the script you'll be using</aside>
+              <section><h1>Use the API, papi</h1>
+                  <pre><code>use Git; # Rest of GH the same
+          die "::error::Last commit should refer to an issue"
+              if ( Git->repository->command("log", "--oneline", "-1") !~ /\#/ );
+                  </code></pre>
+
+                  <aside class="notes">Curiously enough, the API is a series of
+              files to which you can print as well as specially formatted
+              messages printed to STDOUT. These will be picked up by the runner
+                      and displayed as "Annotations".</aside>
               </section>
+
 
               <section><h1>Use installed modules</h1>
                   <pre><code data-line-numbers="1,5-6|2">use CPAN::Meta::YAML;
