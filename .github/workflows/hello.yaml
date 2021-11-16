@@ -12,4 +12,5 @@ jobs:
           use Perl::OSType qw(os_type);
           use Time::HiRes qw(tv_interval);
           my $t0 = [gettimeofday];
-          print "Hey $ENV{'GITHUB_ACTOR'} from $ENV{'GITHUB_ACTION'} running on ", os_type(), " for ", tv_interval ( $t0 );
+          print "Hey $ENV{'GITHUB_ACTOR'} from $ENV{'GITHUB_ACTION'} running on ",
+              os_type(), " for ", tv_interval ( $t0 );
