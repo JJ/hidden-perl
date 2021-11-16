@@ -12,6 +12,6 @@ jobs:
         shell: perl {0}
         run: |
           use Git;
-          if Git->repository->command("log", "--oneline", "-1") !~ /\#/ {
+          if ( Git->repository->command("log", "--oneline", "-1") !~ /\#/ ) {
               die "::error::Last commit should refer to an issue";
           }
