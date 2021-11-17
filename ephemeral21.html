@@ -183,7 +183,7 @@ my @repo_files = $student_repo->command("ls-files"); ## More stuff here...
               </section>
 
               <section><h1>Reading and producing output</h1>
-                  <pre><code data-line-numbers="6,7,8,9">if ( -f "DOCKER_USER" ) {
+                  <pre><code data-line-numbers="6,7,9,10">if ( -f "DOCKER_USER" ) {
   say "❢ Usuario de Docker alternativo";
   open( my $fh, "<", "DOCKER_USER" ) || die "No puedo abrir DOCKER_USER";
   my $docker_user = <$fh>;
@@ -205,11 +205,13 @@ objetivo_5( $iv,  \@repo_files );
 
 exit_action();
                   </code></pre>
+                  <aside class="notes">Needed to set the correct exit code if
+                      there's been some error</aside>
               </section>
 
-              <section><h1>We need the metadata: <code>action.yml</code></h1>
+              <section><h1>Set metadata: <code>action.yml</code></h1>
                   <pre><code data-line-number="4,5|12">name: 'Aplica tests sobre los fuentes IV'
-description: 'Actuando sobre el fuente, lleva a cabo una serie de tests para comprobar objetivos alcanzados'
+description: 'Test for student objectives'
 inputs:
   fase:
     description: 'Fichero en el que se ha hecho el PR == fase del proyecto'
@@ -224,7 +226,7 @@ runs:
               </section>
 
               <section><h1>Ready to grade students</h1>
-                  <pre><code data-line-numbers="">    steps:
+                  <pre><code data-line-numbers="5,6|10,11">    steps:
       - name: Descarga fuente
         uses: actions/checkout@v2
         with:
@@ -237,7 +239,10 @@ runs:
         uses: JJ/grading-source-tests-gh-action@main
                   </code></pre>
                   <aside class="notes">Much cleaner inclusion into externan
-                      workflows, even if in this case it's clearly a very specific application</aside>
+                      workflows, even if in this case it's clearly a very
+                  specific application. Another advantage is that you can run
+                  stuff which is external to the repo you're testing (in this
+                  case, student repositories)</aside>
               </section>
               </section>
               <section
@@ -254,7 +259,7 @@ runs:
         <section data-background='https://live.staticflickr.com/4028/4287623525_8554be0345_o_d.jpg'><h2>Unlike <code>bash</code>, a real language</h2>
           <h1 class='fragment'>Like <code>bash</code>, always
               <em>there</em></h1>
-          <h2 class="fragment">Perlis API through <code>GitHub::Actions</code></h2>
+          <h2 class="fragment">Perlish API through <code>GitHub::Actions</code></h2>
           <h3 class='fragment'>Packaged modules, bundleable scripts</h3>
         </section>
 
