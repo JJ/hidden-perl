@@ -6,11 +6,9 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v2
-      - name: Install GitHub::Actions
-        run: sudo cpan GitHub::Actions
       - name: Ref issue present in a commit
         shell: perl {0}
         if: ${{! contains(github.event.head_commit.message, '#') }}
-        run: |
-          use GitHub::Actions;
-          set_failed( "Last commit should refer to an issue" );
+        env:
+          COMMIT_MSG: ${{github.event.head_commit.message}}
+        run: scripts/error.pl
