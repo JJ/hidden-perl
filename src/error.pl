@@ -4,4 +4,7 @@ use strict;
 use warnings;
 
 use GitHub::Actions;
-set_failed( "Last commit should refer to an issue\n→ «$ENV{COMMIT_MSG}» does not" );
+set_failed( <<EOC );
+Last commit should refer to an issue
+  → «$ENV{COMMIT_MSG}» does not
+EOC
