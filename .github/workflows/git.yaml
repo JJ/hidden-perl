@@ -6,11 +6,11 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v2
-        with:
-          fetch-depth: 2
+      - name: Install GitHub::Actions
+        run: cpanm GitHub::Actions
       - name: Ref issue present in a commit
         shell: perl {0}
+        if: ! contains(github.event.head_commit.message, '#')
         run: |
-          use Git;
-          die "::error::Last commit should refer to an issue"
-              if ( Git->repository->command("log", "--oneline", "-1") !~ /\#/ );
+          use GitHub::Actions;
+          set_failed( "Last commit should refer to an issue" );
